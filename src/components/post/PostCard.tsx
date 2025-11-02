@@ -1,4 +1,7 @@
 import Link from "next/link"
+import { ja } from "date-fns/locale"
+import { formatDistanceToNow } from "date-fns"
+import Image from "next/image"
 import {
   Card,
   CardContent,
@@ -6,14 +9,23 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { PostCardProps } from "@/types/post"
-import { ja } from "date-fns/locale"
-import { formatDistanceToNow } from "date-fns"
-
 
 export default function PostCard({post}: PostCardProps){
     return(
         <Card className="hover:shadow-lg transition-shadow">
             <Link href={`/posts/${post.id}`}>
+                {post.topImage && (
+                    <div className="relative w-full h-48">
+                        <Image
+                            src={post.topImage}
+                            alt={post.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="rounded-t-md object-cover"
+                            priority
+                        />
+                    </div>
+                )}
                 <CardHeader>
                     <CardTitle className="line-clamp-2">{post.title}</CardTitle>
                 </CardHeader>

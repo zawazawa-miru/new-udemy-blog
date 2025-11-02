@@ -2,7 +2,7 @@ export type Post = {
     id: string
     title: string
     content: string
-    topImage: String | null
+    topImage: string | null
     createdAt: Date
     author : {
         name: string
