@@ -1,17 +1,18 @@
+'use client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { signOut } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { Session } from "next-auth"
+import { logout } from "@/lib/actions/logout"
 
 export default function Setting ({ session }: { session: Session }) {
     const handleLogout = async () => {
-        'use server'
-        await signOut()
+        await logout()
     }
     return(
         <DropdownMenu>
@@ -21,7 +22,7 @@ export default function Setting ({ session }: { session: Session }) {
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem onClick={handleLogout} className="cursor-point">
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                 ログアウト
             </DropdownMenuItem>
         </DropdownMenuContent>
